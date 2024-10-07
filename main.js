@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   window.addEventListener('resize', tamanhoPagina);
 
   async function fetchProductData(productNumber,etapa) {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    const isAuthenticated = true;
     const isAuthenticatedExpiration = localStorage.getItem('isAuthenticatedExpiration');
   
     if (!isAuthenticated || (isAuthenticatedExpiration && Date.now() >= parseInt(isAuthenticatedExpiration))) {
