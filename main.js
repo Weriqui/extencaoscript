@@ -1,4 +1,288 @@
+function waitForElement(selector, callback) {
+    const interval = setInterval(() => {
+        const element = document.querySelector(selector);
+        if (element) {
+            clearInterval(interval); // Para a verificação
+            callback(element); // Executa o código passando o elemento
+        }
+    }, 100); // Verifica a cada 100ms
+}
 
+// Exemplo de uso
+waitForElement("#consulta", (element) => {
+    console.log('Elemento encontrado:', element);
+    (function() {
+        busca_produto()
+        busca_usuarios()
+        const produto = document.querySelectorAll('.produto')
+        const SelectsDeEtapa = document.querySelectorAll('.etapa-funil');
+        const etapas = document.querySelectorAll('.etapa')
+        const sections = {
+          'PROSPECÇÃO': 'prospect',
+          'NEGOCIAÇÃO': 'deal',
+          'EXECUÇÃO': 'execut'
+        };
+        
+        function handleEtapaChange(etapaSelect) { 
+          if (etapaSelect instanceof Event) {
+            etapaSelect = etapaSelect.currentTarget;
+          }
+          // Esconder todas as seções
+          for (const sectionId of Object.values(sections)) {
+            const section = document.getElementById(sectionId);
+            if (section) section.classList.remove('visivel');
+          }
+          console.log(etapaSelect)
+          // Obter o valor da opção selecionada
+          const selectedValue = etapaSelect.value;
+          const valorProduto = etapaSelect.parentElement.querySelector('.produto').value
+          SelectsDeEtapa.forEach(etapaSelect => {
+            etapaSelect.value = selectedValue;
+            etapaSelect.parentElement.querySelector('.produto').value = valorProduto
+          });
+        
+          // Mostrar a seção correspondente ao valor selecionado
+          const sectionToShow = sections[selectedValue];
+          if (sectionToShow) {
+            document.getElementById(sectionToShow).classList.add('visivel');
+          }
+          if (selectedValue == 'PROSPECÇÃO'){
+            showStep(10)
+          } else if (selectedValue == 'NEGOCIAÇÃO') {
+            showStep(15)
+          } else if(selectedValue == 'EXECUÇÃO'){
+            showStep(21)
+          }
+        }
+        SelectsDeEtapa.forEach(etapaSelect => {
+          etapaSelect.addEventListener('input', handleEtapaChange);
+        });
+        // Adiciona o event listener ao select
+        function tamanhoPagina() {
+          const viewportWidth = window.innerWidth;
+          const sidebar = Math.round((150 / viewportWidth) * 100)
+          const conteudo = 100 - sidebar
+          etapas.forEach(etapa => {
+            etapa.style.gridTemplateColumns = `${sidebar}vw ${conteudo}vw`
+          })
+        }
+        window.addEventListener('resize', tamanhoPagina);
+      
+        async function fetchProductData(productNumber,etapa) {
+          const isAuthenticated = true;
+          const isAuthenticatedExpiration = localStorage.getItem('isAuthenticatedExpiration');
+        
+          if (!isAuthenticated || (isAuthenticatedExpiration && Date.now() >= parseInt(isAuthenticatedExpiration))) {
+            window.location.href = '/login.html';
+            return;
+          }
+        
+          function adjustBodyHeight() {
+            if (document.body.clientHeight <= 300) {
+              document.body.style.height = '530px';
+            } else {
+              document.body.style.width = '100vw';
+            }
+          }
+        
+          // Adiciona o event listener ao resize
+          window.addEventListener('resize', adjustBodyHeight);
+        
+          const myHeaders = new Headers();
+          myHeaders.append("Accept", "application/json");
+          myHeaders.append("Cookie", "__cf_bm=53xTQMNzJON7e57.ajQe4QtpGRX8qhWEI294.g0i19U-1705091606-1-AXDZgBWC0wYYJTVs/2CoTc873goN1Q9Br1gyIMJtAag5Qq9YT2faO8X/lgOhW96NiV5sVrGScT4PwMpQIA8ka4M=");
+        
+          var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+        
+          try {
+            const response = await fetch(`https://api.pipedrive.com/v1/products/${productNumber}?api_token=6c7d502747be67acc199b483803a28a0c9b95c09`, requestOptions);
+            const responseData = await response.json();
+            const mapa = {
+              "a07d511da0b73c3d72a16602ec78a9558e81a9c9":"link-1",
+              "82e36ce9c10cdbc35c5abb4444c07d6c4cf76fbc":"link-2",
+              "9837a803b7174c43a2395b91ee5707294158af6b":"MENSAGEM-5",
+              "8690506c25f88098425aaea758ddd09c64b580e4":"MENSAGEM-6",
+              "554b8a8154ddb6be0d5f44a4d7344b810a60a2d3":"MENSAGEM-7",
+              "c66f36506126f4944cf6807c188ab4f57887dde9":"CONFIRMACAO-1",
+              "b287aa7155d1330fb8da97581b2d28cc439be98e":"CONFIRMACAO-2",
+              "6cb181a1c8e115feb1a2c7975dfc4b997dd416c8":"NOSHOW-ACESSOR",
+              "1d1e95e5658425af8366c2947b3e8ce5ee0b7ada":"NOSHOW-GESTOR",
+              "d53508074c16449cf3a6ea4ebb68d03a77400892":"SCRIPT-LIGACAO1",
+              "6f25e233a5a7bb875a6042b1d58aac79ffed7266":"SCRIPT-LIGACAO2",
+              "604cbf9df3eb230f04aa82d2e5787cadfc6d3b10":"email",
+              "99f0ea0ce312272a8efdcd3f3716951b7d7022cc":"primerio-horario",
+              "09dd3c4e12810355142b6e22e6efd859a62677c6":"OBJECAO-1",
+              "e199f960da27d48a1bd8ff926bfe0bcd8c9cbf10":"OBJECAO-2",
+              "5094dcb245abb330edf6421802894da5c3e7339d":"OBJECAO-3",
+              "dc142b78663815776928c44432c31ad5e28b7f9d":"enviar-proposta",
+              "2fc771b9c2586d42a51446bbc087699aae8c37e3":"pos-email",
+              "abbdd12a56c48deaa46953a6e92d2ba593a41c69":"flw-1",
+              "83f4180982947d630381a405dfde92765c3b47bc":"flw-2",
+              "f446e737d0e0f7e68d794ebe4e35fdfa0ac34cce":"flw-3",
+              "a3185d67f71e2c5da251a2f5c6a914f1bbf31610":"breakup-deal",
+              "6171719ba916c7a7c6e930f7762f110530e836ed":"ass-contrato",
+              "a25ea4deea554514d6bbfb4b175e44946f66911a":"libera-ecac",
+              "964c736a3429dc50faec9719b19e5a63030d3043":"onboarding",
+              "a0febfc276c1a72f201b69f50da75c6861d22c9e":"cont-fazendo",
+              "3f7be568b20b98476780d1c6d7b5ebce5f9adb33":"ou-cont-fazendo",
+              "af0155486e80ec4a7356053d2ac361a1ce7fe889":"obj1",
+              "97de030ba50c302108b887852fdd11becddb5b2d":"obj2",
+              "cdf94636b01f6c3e7e50f46b3865d574dcf25876":"obj3",
+              "27afd56a345805fe556651c0488625af4892882d":"obj4",
+              "5ee8b3c1112e83c450f9407422bfcf148ac38a57":"esperar",
+              "372b7e196cdd26a1fbff9b97e417fe33ff057408":"T1",
+              "8a02b8045ee0d293b10517a38d4f32a4c4b5cad2":"T2",
+              "ac41b974083759a1d5ede6790eb6ba26971abfa2":"T3",
+              "a07d511da0b73c3d72a16602ec78a9558e81a9c9":"T4",
+              "82e36ce9c10cdbc35c5abb4444c07d6c4cf76fbc":"T5",
+              "fa6ac23848b195ad0c737e935c30dfc522b0506e":"T6",
+              "ce8c89605ede6e4c71a04933032598eb7007e217":"T7",
+              "9837a803b7174c43a2395b91ee5707294158af6b":"F1",
+              "8690506c25f88098425aaea758ddd09c64b580e4":"F2",
+              "554b8a8154ddb6be0d5f44a4d7344b810a60a2d3":"F3",
+              "de7cc46b66dc46cbbcdd9caf01c316ae2aa5c9cb":"F4",
+              "c66f36506126f4944cf6807c188ab4f57887dde9":"F5",
+              "b287aa7155d1330fb8da97581b2d28cc439be98e":"F6",
+              "99f0ea0ce312272a8efdcd3f3716951b7d7022cc":"F7",
+              "6cb181a1c8e115feb1a2c7975dfc4b997dd416c8":"F8",
+              "1d1e95e5658425af8366c2947b3e8ce5ee0b7ada":"F9",
+              "604cbf9df3eb230f04aa82d2e5787cadfc6d3b10":"F10",
+              "abbdd12a56c48deaa46953a6e92d2ba593a41c69":"F11",
+              "2166165fd7207571607d75ea21bb3d9bd32529ae":"F12",
+              "1370a59adbfe110e85fb14f20856796bcf806d1d":"C1",
+              "8a426b7141d9548b64756db71f436da654d47df4":"C2",
+              "12ceb06194e3480ada0de275cb469fce07bf2cfa":"C3",
+              "764dfb3b15eb71bf9a06933ced900ce57fec631c":"NS1",
+              "f3e87e133355ab14255256223ca644cc92e3629a":"NS2",
+              "125982abd7313245c79e0773a8fa6a5ef8effe03":"NS3",
+              "066815510a36b55c73d725e501f40a3325abdc59":"NS4",
+              "0f63ca9c37c3964bb83de247733b7fba0447e9fd":"NS5",
+            };
+      
+            const limpar = Object.values(mapa);
+            for (let i = 0; i < limpar.length; i++) {
+              const element = document.getElementById(limpar[i]);
+              if(element){
+                element.innerHTML = ''
+              }
+            }
+            Object.entries(mapa).forEach(([key, value]) => {
+              const scriptText = responseData.data[key];
+              if (scriptText) {
+                const formattedText = scriptText.replace(/\n\n/g, '\n').replace(/\n/g, '<br><br>').replace(/XXXXXXXXXX/g,'<strong>XXXXXXXXXX</strong>').replace(/XXXXXXXXX/g,'<strong>XXXXXXXXX</strong>').replace(/XXXXXXXX/g,'<strong>XXXXXXXX</strong>').replace(/XXXXXXX/g,'<strong>XXXXXXX</strong>').replace(/XXXXXX/g,'<strong>XXXXXX</strong>').replace(/XXXXX/g,'<strong>XXXXX</strong>').replace(/XXXX/g,'<strong>XXXX</strong>').replace(/XXX/g,'<strong>XXX</strong>');
+                const element = document.getElementById(value);
+                if (element) {
+                  element.innerHTML = formattedText;
+                }
+              }
+            });
+      
+            for (let i = 1; i <= totalSteps; i++) {
+              const stepEl = document.getElementById('step' + i);
+              if (stepEl) {
+                stepEl.addEventListener('click', () => showStep(i));
+              }
+            }
+      
+            showStep(etapa);
+          
+          } catch (error) {
+            console.log('error', error);
+          }
+        }
+        fetchProductData(produto[0].value,10)
+        produto.forEach(produto_clicado => {
+          produto_clicado.addEventListener('input', function(event){
+            numero_produto = event.currentTarget.value
+            fetchProductData(numero_produto, parseInt(document.querySelectorAll('.step-content:not(.hidden)')[0].id.split('-')[1]))
+          })
+        })
+        handleEtapaChange(document.querySelector('.etapa-funil'));
+        tamanhoPagina()
+    })();
+
+    (function() {
+        const redParagraphs = document.querySelectorAll('p.red');
+      
+        redParagraphs.forEach(p => {
+          p.addEventListener('click', function() {
+            // Criar elemento de confirmação se não existir
+            let confirmation = p.querySelector('.copy-confirmation');
+            if (!confirmation) {
+              confirmation = document.createElement('span');
+              confirmation.classList.add('copy-confirmation');
+              confirmation.textContent = 'Copiado!';
+              p.appendChild(confirmation);
+            }
+      
+            // Copiar texto, excluindo o elemento de confirmação
+            let textToCopy = p.innerHTML
+              .replace(/<br>/g, '\n') // Substitui <br> por \n
+              .replace(/<[^>]*>/g, '') // Remove outras tags HTML
+              .replace('Copiado!', '') // Remove a palavra 'Copiado'
+              .replace(/<strong>/g, '') // Remove a tag de abertura <strong>
+              .replace(/<\/strong>/g, ''); // Remove a tag de fechamento </strong>
+            navigator.clipboard.writeText(textToCopy)
+              .then(() => {
+                // Mostrar confirmação
+                confirmation.classList.add('show-confirmation');
+                // Ocultar após a animação
+                setTimeout(() => {
+                  confirmation.classList.remove('show-confirmation');
+                }, 2000);
+              })
+              .catch(err => {
+                console.error('Erro ao copiar texto:', err);
+              });
+          });
+        });
+      
+        /*document.querySelector('#sidebar').addEventListener('mouseover', function() {
+          document.querySelector('p.link').style.width = '250px';
+        });
+        
+        document.querySelector('#sidebar').addEventListener('mouseout', function() {
+          document.querySelector('p.link').style.width = 'auto'; // ou qualquer outro valor padrão
+        });*/
+        
+    })();
+
+    (function () {
+
+        document.querySelector("#consulta_telefone").addEventListener('click', function(){
+          let numero = document.querySelector("#pesquisa_telefone").value
+          pesquisaTelefone(numero)
+          if (document.querySelector("#Agente").value = ''){
+            const modal = document.querySelector('dialog')
+            modal.innerHTML = '<h1>Selecione o Assessor</h1> <button>OK</button>'
+            const buttonClose = document.querySelector("dialog button")
+            buttonClose.onclick = function () {
+              modal.close()
+              modal.innerHTML = ''
+            }
+            modal.showModal()
+          }
+          document.querySelector("#transfere_negocio").addEventListener('click',converter_lead_em_negocio);
+        });
+        
+    })()
+
+    document.querySelector("#consulta").addEventListener('click',function(){
+        if(document.querySelector("#pesquisa").value.length <=14) {
+          find(formatarCPF(document.querySelector("#pesquisa").value))
+        } else{
+          findpj(document.querySelector("#pesquisa").value)
+        }
+    })
+
+    document.querySelector("#par").addEventListener('click',function(){
+        copyPageContent()
+    })
+});
 const totalSteps = 30;
 async function showStep(stepNumber) {
   for (let i = 0; i <= totalSteps; i++) {
@@ -13,254 +297,6 @@ async function showStep(stepNumber) {
     currentEl.classList.remove('hidden');
   }
 }
-
-document.addEventListener('DOMContentLoaded', async function() {
-  busca_produto()
-  busca_usuarios()
-  const produto = document.querySelectorAll('.produto')
-  const SelectsDeEtapa = document.querySelectorAll('.etapa-funil');
-  const etapas = document.querySelectorAll('.etapa')
-  const sections = {
-    'PROSPECÇÃO': 'prospect',
-    'NEGOCIAÇÃO': 'deal',
-    'EXECUÇÃO': 'execut'
-  };
-  
-  function handleEtapaChange(etapaSelect) { 
-    if (etapaSelect instanceof Event) {
-      etapaSelect = etapaSelect.currentTarget;
-    }
-    // Esconder todas as seções
-    for (const sectionId of Object.values(sections)) {
-      const section = document.getElementById(sectionId);
-      if (section) section.classList.remove('visivel');
-    }
-    console.log(etapaSelect)
-    // Obter o valor da opção selecionada
-    const selectedValue = etapaSelect.value;
-    const valorProduto = etapaSelect.parentElement.querySelector('.produto').value
-    SelectsDeEtapa.forEach(etapaSelect => {
-      etapaSelect.value = selectedValue;
-      etapaSelect.parentElement.querySelector('.produto').value = valorProduto
-    });
-  
-    // Mostrar a seção correspondente ao valor selecionado
-    const sectionToShow = sections[selectedValue];
-    if (sectionToShow) {
-      document.getElementById(sectionToShow).classList.add('visivel');
-    }
-    if (selectedValue == 'PROSPECÇÃO'){
-      showStep(10)
-    } else if (selectedValue == 'NEGOCIAÇÃO') {
-      showStep(15)
-    } else if(selectedValue == 'EXECUÇÃO'){
-      showStep(21)
-    }
-  }
-  SelectsDeEtapa.forEach(etapaSelect => {
-    etapaSelect.addEventListener('input', handleEtapaChange);
-  });
-  // Adiciona o event listener ao select
-  function tamanhoPagina() {
-    const viewportWidth = window.innerWidth;
-    const sidebar = Math.round((150 / viewportWidth) * 100)
-    const conteudo = 100 - sidebar
-    etapas.forEach(etapa => {
-      etapa.style.gridTemplateColumns = `${sidebar}vw ${conteudo}vw`
-    })
-  }
-  window.addEventListener('resize', tamanhoPagina);
-
-  async function fetchProductData(productNumber,etapa) {
-    const isAuthenticated = true;
-    const isAuthenticatedExpiration = localStorage.getItem('isAuthenticatedExpiration');
-  
-    if (!isAuthenticated || (isAuthenticatedExpiration && Date.now() >= parseInt(isAuthenticatedExpiration))) {
-      window.location.href = '/login.html';
-      return;
-    }
-  
-    function adjustBodyHeight() {
-      if (document.body.clientHeight <= 300) {
-        document.body.style.height = '530px';
-      } else {
-        document.body.style.width = '100vw';
-      }
-    }
-  
-    // Adiciona o event listener ao resize
-    window.addEventListener('resize', adjustBodyHeight);
-  
-    const myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Cookie", "__cf_bm=53xTQMNzJON7e57.ajQe4QtpGRX8qhWEI294.g0i19U-1705091606-1-AXDZgBWC0wYYJTVs/2CoTc873goN1Q9Br1gyIMJtAag5Qq9YT2faO8X/lgOhW96NiV5sVrGScT4PwMpQIA8ka4M=");
-  
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-  
-    try {
-      const response = await fetch(`https://api.pipedrive.com/v1/products/${productNumber}?api_token=6c7d502747be67acc199b483803a28a0c9b95c09`, requestOptions);
-      const responseData = await response.json();
-      const mapa = {
-        "a07d511da0b73c3d72a16602ec78a9558e81a9c9":"link-1",
-        "82e36ce9c10cdbc35c5abb4444c07d6c4cf76fbc":"link-2",
-        "9837a803b7174c43a2395b91ee5707294158af6b":"MENSAGEM-5",
-        "8690506c25f88098425aaea758ddd09c64b580e4":"MENSAGEM-6",
-        "554b8a8154ddb6be0d5f44a4d7344b810a60a2d3":"MENSAGEM-7",
-        "c66f36506126f4944cf6807c188ab4f57887dde9":"CONFIRMACAO-1",
-        "b287aa7155d1330fb8da97581b2d28cc439be98e":"CONFIRMACAO-2",
-        "6cb181a1c8e115feb1a2c7975dfc4b997dd416c8":"NOSHOW-ACESSOR",
-        "1d1e95e5658425af8366c2947b3e8ce5ee0b7ada":"NOSHOW-GESTOR",
-        "d53508074c16449cf3a6ea4ebb68d03a77400892":"SCRIPT-LIGACAO1",
-        "6f25e233a5a7bb875a6042b1d58aac79ffed7266":"SCRIPT-LIGACAO2",
-        "604cbf9df3eb230f04aa82d2e5787cadfc6d3b10":"email",
-        "99f0ea0ce312272a8efdcd3f3716951b7d7022cc":"primerio-horario",
-        "09dd3c4e12810355142b6e22e6efd859a62677c6":"OBJECAO-1",
-        "e199f960da27d48a1bd8ff926bfe0bcd8c9cbf10":"OBJECAO-2",
-        "5094dcb245abb330edf6421802894da5c3e7339d":"OBJECAO-3",
-        "dc142b78663815776928c44432c31ad5e28b7f9d":"enviar-proposta",
-        "2fc771b9c2586d42a51446bbc087699aae8c37e3":"pos-email",
-        "abbdd12a56c48deaa46953a6e92d2ba593a41c69":"flw-1",
-        "83f4180982947d630381a405dfde92765c3b47bc":"flw-2",
-        "f446e737d0e0f7e68d794ebe4e35fdfa0ac34cce":"flw-3",
-        "a3185d67f71e2c5da251a2f5c6a914f1bbf31610":"breakup-deal",
-        "6171719ba916c7a7c6e930f7762f110530e836ed":"ass-contrato",
-        "a25ea4deea554514d6bbfb4b175e44946f66911a":"libera-ecac",
-        "964c736a3429dc50faec9719b19e5a63030d3043":"onboarding",
-        "a0febfc276c1a72f201b69f50da75c6861d22c9e":"cont-fazendo",
-        "3f7be568b20b98476780d1c6d7b5ebce5f9adb33":"ou-cont-fazendo",
-        "af0155486e80ec4a7356053d2ac361a1ce7fe889":"obj1",
-        "97de030ba50c302108b887852fdd11becddb5b2d":"obj2",
-        "cdf94636b01f6c3e7e50f46b3865d574dcf25876":"obj3",
-        "27afd56a345805fe556651c0488625af4892882d":"obj4",
-        "5ee8b3c1112e83c450f9407422bfcf148ac38a57":"esperar",
-        "372b7e196cdd26a1fbff9b97e417fe33ff057408":"T1",
-        "8a02b8045ee0d293b10517a38d4f32a4c4b5cad2":"T2",
-        "ac41b974083759a1d5ede6790eb6ba26971abfa2":"T3",
-        "a07d511da0b73c3d72a16602ec78a9558e81a9c9":"T4",
-        "82e36ce9c10cdbc35c5abb4444c07d6c4cf76fbc":"T5",
-        "fa6ac23848b195ad0c737e935c30dfc522b0506e":"T6",
-        "ce8c89605ede6e4c71a04933032598eb7007e217":"T7",
-        "9837a803b7174c43a2395b91ee5707294158af6b":"F1",
-        "8690506c25f88098425aaea758ddd09c64b580e4":"F2",
-        "554b8a8154ddb6be0d5f44a4d7344b810a60a2d3":"F3",
-        "de7cc46b66dc46cbbcdd9caf01c316ae2aa5c9cb":"F4",
-        "c66f36506126f4944cf6807c188ab4f57887dde9":"F5",
-        "b287aa7155d1330fb8da97581b2d28cc439be98e":"F6",
-        "99f0ea0ce312272a8efdcd3f3716951b7d7022cc":"F7",
-        "6cb181a1c8e115feb1a2c7975dfc4b997dd416c8":"F8",
-        "1d1e95e5658425af8366c2947b3e8ce5ee0b7ada":"F9",
-        "604cbf9df3eb230f04aa82d2e5787cadfc6d3b10":"F10",
-        "abbdd12a56c48deaa46953a6e92d2ba593a41c69":"F11",
-        "2166165fd7207571607d75ea21bb3d9bd32529ae":"F12",
-        "1370a59adbfe110e85fb14f20856796bcf806d1d":"C1",
-        "8a426b7141d9548b64756db71f436da654d47df4":"C2",
-        "12ceb06194e3480ada0de275cb469fce07bf2cfa":"C3",
-        "764dfb3b15eb71bf9a06933ced900ce57fec631c":"NS1",
-        "f3e87e133355ab14255256223ca644cc92e3629a":"NS2",
-        "125982abd7313245c79e0773a8fa6a5ef8effe03":"NS3",
-        "066815510a36b55c73d725e501f40a3325abdc59":"NS4",
-        "0f63ca9c37c3964bb83de247733b7fba0447e9fd":"NS5",
-      };
-
-      const limpar = Object.values(mapa);
-      for (let i = 0; i < limpar.length; i++) {
-        const element = document.getElementById(limpar[i]);
-        if(element){
-          element.innerHTML = ''
-        }
-      }
-      Object.entries(mapa).forEach(([key, value]) => {
-        const scriptText = responseData.data[key];
-        if (scriptText) {
-          const formattedText = scriptText.replace(/\n\n/g, '\n').replace(/\n/g, '<br><br>').replace(/XXXXXXXXXX/g,'<strong>XXXXXXXXXX</strong>').replace(/XXXXXXXXX/g,'<strong>XXXXXXXXX</strong>').replace(/XXXXXXXX/g,'<strong>XXXXXXXX</strong>').replace(/XXXXXXX/g,'<strong>XXXXXXX</strong>').replace(/XXXXXX/g,'<strong>XXXXXX</strong>').replace(/XXXXX/g,'<strong>XXXXX</strong>').replace(/XXXX/g,'<strong>XXXX</strong>').replace(/XXX/g,'<strong>XXX</strong>');
-          const element = document.getElementById(value);
-          if (element) {
-            element.innerHTML = formattedText;
-          }
-        }
-      });
-
-      for (let i = 1; i <= totalSteps; i++) {
-        const stepEl = document.getElementById('step' + i);
-        if (stepEl) {
-          stepEl.addEventListener('click', () => showStep(i));
-        }
-      }
-
-      showStep(etapa);
-    
-    } catch (error) {
-      console.log('error', error);
-    }
-  }
-  fetchProductData(produto[0].value,10)
-  produto.forEach(produto_clicado => {
-    produto_clicado.addEventListener('input', function(event){
-      numero_produto = event.currentTarget.value
-      fetchProductData(numero_produto, parseInt(document.querySelectorAll('.step-content:not(.hidden)')[0].id.split('-')[1]))
-    })
-  })
-  handleEtapaChange(document.querySelector('.etapa-funil'));
-  tamanhoPagina()
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const redParagraphs = document.querySelectorAll('p.red');
-
-  redParagraphs.forEach(p => {
-    p.addEventListener('click', function() {
-      // Criar elemento de confirmação se não existir
-      let confirmation = p.querySelector('.copy-confirmation');
-      if (!confirmation) {
-        confirmation = document.createElement('span');
-        confirmation.classList.add('copy-confirmation');
-        confirmation.textContent = 'Copiado!';
-        p.appendChild(confirmation);
-      }
-
-      // Copiar texto, excluindo o elemento de confirmação
-      let textToCopy = p.innerHTML
-        .replace(/<br>/g, '\n') // Substitui <br> por \n
-        .replace(/<[^>]*>/g, '') // Remove outras tags HTML
-        .replace('Copiado!', '') // Remove a palavra 'Copiado'
-        .replace(/<strong>/g, '') // Remove a tag de abertura <strong>
-        .replace(/<\/strong>/g, ''); // Remove a tag de fechamento </strong>
-      navigator.clipboard.writeText(textToCopy)
-        .then(() => {
-          // Mostrar confirmação
-          confirmation.classList.add('show-confirmation');
-          // Ocultar após a animação
-          setTimeout(() => {
-            confirmation.classList.remove('show-confirmation');
-          }, 2000);
-        })
-        .catch(err => {
-          console.error('Erro ao copiar texto:', err);
-        });
-    });
-  });
-
-  /*document.querySelector('#sidebar').addEventListener('mouseover', function() {
-    document.querySelector('p.link').style.width = '250px';
-  });
-  
-  document.querySelector('#sidebar').addEventListener('mouseout', function() {
-    document.querySelector('p.link').style.width = 'auto'; // ou qualquer outro valor padrão
-  });*/
-  
-});
-
-
-
-
-
-
-
-
 
 
 function createTableFromJson(jsonData) {
@@ -448,15 +484,6 @@ function findpj(consulta) {
 
 
 
-document.querySelector("#consulta").addEventListener('click',function(){
-  if(document.querySelector("#pesquisa").value.length <=14) {
-    find(formatarCPF(document.querySelector("#pesquisa").value))
-  } else{
-    findpj(document.querySelector("#pesquisa").value)
-  }
-})
-
-
 function formatarCPF(cpf) {
   let cpfLimpo;
   if(cpf.slice(0,3) === "XXX"){
@@ -513,9 +540,7 @@ function filtrar_transferir_negocio(dado){
 }
 
 
-document.querySelector("#par").addEventListener('click',function(){
-  copyPageContent()
-})
+
 
 
 
@@ -888,25 +913,7 @@ function formatarTelefone(numero) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
 
-  document.querySelector("#consulta_telefone").addEventListener('click', function(){
-    let numero = document.querySelector("#pesquisa_telefone").value
-    pesquisaTelefone(numero)
-    if (document.querySelector("#Agente").value = ''){
-      const modal = document.querySelector('dialog')
-      modal.innerHTML = '<h1>Selecione o Assessor</h1> <button>OK</button>'
-      const buttonClose = document.querySelector("dialog button")
-      buttonClose.onclick = function () {
-        modal.close()
-        modal.innerHTML = ''
-      }
-      modal.showModal()
-    }
-    document.querySelector("#transfere_negocio").addEventListener('click',converter_lead_em_negocio);
-  });
-  
-})
 
 
 
@@ -972,3 +979,5 @@ const mapa_par_pj = {
   "VALORCONSOLIDADO":"VALOR_CONSOLIDADO",
   "VALORDOPRINCIPAL":"VALOR_PINCIPAL"
 }
+
+
