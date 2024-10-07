@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #5cb85c;
+  --hover-color: #449d44;
+  --text-color: #333;
+  --background-color: #f5f5f5;
+  --border-color: #ddd;
+  --button-text-color: #fff;
+  --font-family: 'Roboto', sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  background-color: transparent;
+}
+
+/* ::-webkit-scrollbar {
+  display: initial;
+  width: 6px; 
+
+  
+} */
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* cor da área de fundo da barra de rolagem */
+}
+
+/* ::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 20px;
+  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+} */
+
+body {
+  font-family: var(--font-family);
+  background-color: #e6e6e6;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 530px;
+}
+button{
+  cursor: pointer;
+  outline:none;
+}
+button:focus {
+  outline: none;
+}
+.conteudo{
+  overflow-y: scroll;
+  overflow-x: clip;
+  background-color: #e6e6e6;
+  grid-area: conteudo;
+}
+
+section {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 91vw;
+  min-width: 322px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #e6e6e6;
+  color: #000;
+}
+
+
+section h1{
+  color: black;
+  text-align: center;
+  font-size: xx-large;
+  
+}
+
+section{
+  color: black;
+}
+.nav-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background-color: var(--hover-color);
+}
+
+.contorno h2 {
+  background-color: #3CB4C9;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  width: max-content;
+  margin: auto
+}
+
+/* Responsividade */
+
+
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.visible {
+  animation: fadeIn 1s;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Acessibilidade */
+
+
+/* Ícones SVG */
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-color);
+  transition: fill 0.3s ease;
+}
+
+.icon:hover {
+  fill: var(--primary-color);
+}
+
+
+/* Sidebar Base Styles */
+.sidebar {
+  height: 100vh;
+  background: #0097b2;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  white-space: nowrap;
+  z-index: 1000;
+  grid-area: sidebar;
+}
+
+
+
+.sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sidebar li {
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* Stacks elements vertically when collapsed */
+  align-items: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background-color: #064b57;
+}
+
+/* Show "Etapa" beside the number when expanded */
+.sidebar li {
+  flex-direction: row; /* Aligns elements horizontally when expanded */
+  justify-content: center;
+  text-align: center;
+}
+
+.sidebar li .step-number {
+  font-size: 24px; /* Larger text for the step number */
+}
+
+
+
+/* Adjust the main content margin */
+#main-content {
+  margin-left: 60px;
+  transition: margin-left 0.3s ease;
+}
+
+#main-content:hover {
+  margin-left: 200px; /* Space for the sidebar when expanded */
+}
+
+p.link {
+  word-wrap:break-word;
+  width: 305px;
+}
+
+p.red{
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border-radius: 11px;
+  padding: 9px;
+}
+
+.copy-confirmation {
+  display: none;
+  position: absolute;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #333;
+  z-index: 1000;
+}
+.show-confirmation {
+  display: block;
+  animation: fadeOut 2s;
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.blue{
+  color: #3aa9bdd7;
+}
+
+a {
+  font-size: large;
+  text-align: center;
+  margin-top: 2%;
+}
+
+#card {
+  width: 100%;
+  border: solid 1px black;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  margin-top: 2%;
+}
+#card::-webkit-scrollbar {
+  display: initial;
+  width: 0px; 
+  height: 7px;
+}
+
+#card::-webkit-scrollbar-thumb {
+  background-color: #090909; 
+  border-radius: 5px;
+}
+#card::-webkit-scrollbar-thumb:hover {
+  background-color: darkgray; 
+}
+
+.styled-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: #f3f3f3; /* Um cinza claro */
+  color: black;
+  text-align: left;
+  border-bottom: solid black 2px;
+  font-weight: 900;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 4px;
+  text-align: left;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #ffffff; /* Branco para linhas ímpares */
+  color: #090909;
+  border-bottom: solid black 1px;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #e6e6e6; /* Um cinza mais suave para linhas pares */
+}
+
+
+
+.input-parcelamento{
+  width: max-content;
+  margin: auto;
+}
+
+#par {
+  margin-top: 1%;
+}
+
+/* Estilização dos elementos select */
+select, button {
+  font-family: var(--font-family);
+  font-size: 1em;
+  padding: 8px 30px 8px 12px; /* Ajuste o padding-right para dar espaço à seta */
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  color: var(--text-color);
+  margin: 10px 0;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative; /* Para posicionar corretamente a seta */
+}
+input {
+  font-family: var(--font-family);
+  font-size: 1em;
+  padding: 8px 30px 8px 12px; /* Ajuste o padding-right para dar espaço à seta */
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  color: var(--text-color);
+  margin: 10px 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative; /* Para posicionar corretamente a seta */
+}
+
+/* Adicionando ícone de seta para baixo nos selects */
+select {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="%23333" d="M5 8l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Ajuste essa posição se necessário */
+  background-size: 16px 16px; /* Ajuste o tamanho da seta conforme necessário */
+}
+
+/* Estilo ao passar o mouse e foco */
+select:hover, select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.etapa{
+  display: none;
+}
+
+.etapa.visivel {
+  display: grid;
+  width: 100%;
+  grid-template-areas:
+    "sidebar etapas"
+    "sidebar conteudo";
+  grid-template-rows: 10vh 90vh;
+  grid-template-columns: 22vw 78vw;
+}
+
+.etapas{
+  background-color: #e6e6e6;
+  grid-area: etapas;
+  display: flex !important;
+  justify-content: center;
+  height: max-content;
+}
+
+#dados-deal{
+  margin-top: 10px;
+  display: none;
+}
+
+p.topico {
+  font-size: small;
+}
+
+.etapa-atividade {
+  padding: 1%;
+  background-color: lightgray;
+  margin: 10% 2% 10% 2%;
+  border-radius: 20px;
+}
+
+p.tipo-atividade {
+  font-size: large;
+  font-weight: 800;
+}
+
+.etapa-atividade div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.etapa-atividade a{
+  font-size: small;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.etapa-atividade:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgb(0 0 0 / 63%);
+}

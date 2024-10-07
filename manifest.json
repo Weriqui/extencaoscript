@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "CADÊNCIA PRIME",
+  "version": "17.1",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnOL2HcP7jUcVD0jb307vTsKKIJfd15jDToS9/gcYRr9JcyTqAkIOtjZWv2SYdCUbW/UQhHbgVaxc7v8QhVYipP0m/IzIggS1CdBMVFdlMXQKE3M+7IqWhb7Y56D8qaRrbvFbA3lD6UDXlraEmHMs/oKWDbs6PjAmq4dXbEpffVq7YnqsLnFKMvpNG9vKIZ5wcOrd+W7Vw4sCJFnPn6DW7o6q32uz5tFE9mIq4Wt0D3vg3ptQKTE5oAUnfUrU0IwIn7pUGVAU9W2ieCRDCKxUz136dioKPaC0at4jkgmbu30EAH49QnpQ7zIIdU5SaPOJOUS7dEpf2J/aRbnMQwhLfQIDAQAB",
+  "action": {
+    "default_popup": "main.html"
+  },
+  "permissions": [
+    "identity",
+    "sidePanel",
+    "http://*/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "side_panel": {
+    "default_path": "main.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "oauth2": {
+    "client_id": "12178323094-iuf90ekjm8ai02tmujf9jsl2tf2lggoc.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive"
+    ]
+  }
+
+}
