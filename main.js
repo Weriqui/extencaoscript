@@ -1,4 +1,4 @@
-getAccessToken()
+
 const totalSteps = 30;
 async function showStep(stepNumber) {
   for (let i = 0; i <= totalSteps; i++) {
