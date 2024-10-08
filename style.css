@@ -418,7 +418,13 @@ p.tipo-atividade {
   box-shadow: 0 6px 12px rgb(0 0 0 / 63%);
 }
 
+#etapa-29 header{
+  grid-row-start: 1;
+  grid-column-start: 1;
 
+  grid-row-end: 1;
+  grid-column-end: 6;
+}
 
 #etapa-29 #pesquisar {
   margin: auto;
