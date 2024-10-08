@@ -20,7 +20,8 @@ waitForElement("#consulta", (element) => {
         const sections = {
           'PROSPECÇÃO': 'prospect',
           'NEGOCIAÇÃO': 'deal',
-          'EXECUÇÃO': 'execut'
+          'EXECUÇÃO': 'execut',
+          'REPESCAGEM':'repesca'
         };
         
         function handleEtapaChange(etapaSelect) { 
