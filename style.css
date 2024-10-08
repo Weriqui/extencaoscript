@@ -417,3 +417,124 @@ p.tipo-atividade {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgb(0 0 0 / 63%);
 }
+
+
+
+#etapa-29 #pesquisar {
+  margin: auto;
+  width: max-content;
+}
+#etapa-29 #centro {
+  width: 100%;
+  padding-top:1%;
+}
+#etapa-29 input{
+  width: 20vw;
+  height: 2vw;
+}
+
+#etapa-29 button{
+  height: 2.5vw;
+}
+#etapa-29 table{
+  background-color: white;
+}
+#etapa-29 th, #etapa-29 td {
+  border-bottom: 1px solid #ddd;
+  column-gap: 0;
+}
+
+#etapa-29 th.end, #etapa-29 td.end {
+  text-align: start; /* Alinha o texto à direita */
+  padding-right: 15px; /* Ajuste conforme necessário para alinhar com o cabeçalho */
+}
+
+
+#etapa-29 th {
+  background-color: rgba(128, 128, 128, 0.607);
+  color: black;
+  text-align: start;
+}
+#etapa-29 .com-villela th {
+  background-color: #3f84c5e4;
+  color: white;
+}
+
+#etapa-29 tr:nth-child(even){background-color: rgba(211, 211, 211, 0.692);}
+
+#etapa-29 table {
+  width: 650px;
+  margin: auto;
+}
+
+#etapa-29 .tipo-parcelamento{
+  font-weight: 500;
+}
+
+#etapa-29 .com-villela {
+  margin-top: 1%;
+}
+
+#etapa-29 .sem-villela {
+  margin-top: 2%;
+}
+
+#etapa-29 tfoot {
+  margin-top: 10%;
+}
+
+#etapa-29 tfoot th {
+  font-weight: 400;
+}
+
+#etapa-29 .valor-reducao{
+  font-weight: 500;
+  color: green;
+}
+
+#etapa-29 footer{
+  color: white;
+  bottom: 0;
+  grid-row-start: 8;
+  grid-column-start: 1;
+
+  grid-row-end: 9;
+  grid-column-end: 6;
+}
+
+#etapa-29 footer p {
+  text-align: center;
+}
+
+#etapa-29 main{
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-row-end: 8;
+  grid-column-end: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+}
+
+#etapa-29 button{
+ background-color: #649eb085;
+ border: none;
+ border-radius: 5%;
+ color: white;
+ font-weight: 700;
+}
+#etapa-29 img{
+  width: 15%;
+}
+
+#etapa-29 #parcelamentos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#etapa-29 #parcelamentos img {
+  margin-top: 20px;
+}
