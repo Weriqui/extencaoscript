@@ -418,42 +418,21 @@ p.tipo-atividade {
   box-shadow: 0 6px 12px rgb(0 0 0 / 63%);
 }
 
-#etapa-29 header{
-  grid-row-start: 1;
-  grid-column-start: 1;
 
-  grid-row-end: 1;
-  grid-column-end: 6;
-}
-
-#etapa-29 #pesquisar {
-  margin: auto;
-  width: max-content;
-}
-#etapa-29 #centro {
-  width: 100%;
-  padding-top:1%;
-}
-#etapa-29 input{
-  width: 20vw;
-  height: 2vw;
-}
-
-#etapa-29 button{
-  height: 2.5vw;
-}
 #etapa-29 table{
   background-color: white;
 }
 #etapa-29 th, #etapa-29 td {
   border-bottom: 1px solid #ddd;
   column-gap: 0;
+  text-align: start;
 }
 
 #etapa-29 th.end, #etapa-29 td.end {
-  text-align: start; /* Alinha o texto à direita */
+  text-align: end; /* Alinha o texto à direita */
   padding-right: 15px; /* Ajuste conforme necessário para alinhar com o cabeçalho */
 }
+
 
 
 #etapa-29 th {
@@ -498,19 +477,6 @@ p.tipo-atividade {
   color: green;
 }
 
-#etapa-29 footer{
-  color: white;
-  bottom: 0;
-  grid-row-start: 8;
-  grid-column-start: 1;
-
-  grid-row-end: 9;
-  grid-column-end: 6;
-}
-
-#etapa-29 footer p {
-  text-align: center;
-}
 
 #etapa-29 main{
   grid-row-start: 2;
@@ -523,14 +489,8 @@ p.tipo-atividade {
   align-items: center;
 }
 
-#etapa-29 button{
- background-color: #649eb085;
- border: none;
- border-radius: 5%;
- color: white;
- font-weight: 700;
-}
-#etapa-29 img{
+
+#etapa-29 .villela{
   width: 15%;
 }
 
@@ -543,4 +503,106 @@ p.tipo-atividade {
 
 #etapa-29 #parcelamentos img {
   margin-top: 20px;
+}
+
+#etapa-29 #conteudo{
+  display: block;
+  overflow: auto;
+  height: 80vh;
+  font-weight: initial;
+}
+
+#etapa-29 #conteudo::-webkit-scrollbar{
+  display: initial;
+  width: 6px;
+  height: 6px;
+}
+#etapa-29 #conteudo::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+#etapa-29 #conteudo::-webkit-scrollbar-thumb{
+  background-color: #888;
+  border-radius: 20px;
+}
+
+#etapa-29 th, #etapa-29 tr, #etapa-29 td{
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: initial;
+}
+
+#etapa-29 .modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  overflow: auto;
+  text-align: center;
+}
+
+#etapa-29 .modal-content {
+  background-color: #fff; /* Fundo branco */
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #0d6efd; /* Borda azul */
+  border-radius: 5px;
+  width: max-content;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+
+}
+
+#etapa-29 .close {
+  color: #0d6efd; /* Cor do ícone de fechar */
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#etapa-29 .close:hover,
+#etapa-29 .close:focus {
+  color: #007bff; /* Cor do ícone de fechar ao passar o mouse */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#etapa-29 .modal button {
+  background-color: #0d6efd; /* Fundo azul */
+  color: #fff; /* Cor do texto branco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family:Roboto,'sans-serif';
+}
+
+#etapa-29 .modal button:hover {
+ background-color: #007bff; /* Fundo azul mais escuro ao passar o mouse */
+}
+
+#etapa-29 .modal p {
+  margin: auto;
+  font-family:Roboto,'sans-serif';
+  font-weight: 500;
+  font-size: large;
+  max-width: unset;
+}
+
+#etapa-29 input[type=radio]{
+  width: initial;
+}
+
+#etapa-29 div#typo-consulta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#etapa-29 label {
+  color: white;
+  text-align: center;
+  padding: 1%;
 }

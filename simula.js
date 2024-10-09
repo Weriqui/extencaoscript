@@ -1,5 +1,5 @@
 async function pesquisar() {
-    let consulta = document.querySelector("#pesquisa").value
+    let consulta = document.querySelector("#pesquisarp").value
     const tipo_consulta = document.querySelector('input[name="type-consulta"]:checked').value
     document.querySelectorAll("main div").forEach(function (nome) {
         nome.innerHTML = ""
@@ -310,7 +310,7 @@ function removerPontuacaoCNPJ(cnpj) {
 
 function validaCNPJ() {
     if (document.querySelector('input[name="type-consulta"]:checked').value ==='cnpj'){
-        let cnpj = document.querySelector("#pesquisa").value;
+        let cnpj = document.querySelector("#pesquisarp").value;
         var b = [ 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 ]
         var c = String(cnpj).replace(/[^\d]/g, '')
     
@@ -335,7 +335,7 @@ function validaCNPJ() {
 }
 
 function red(){
-    const input = document.querySelector("#pesquisa")
+    const input = document.querySelector("#pesquisarp")
     let span = document.querySelector("span")
     if (input.value.length > 0){
         if (validaCNPJ()){
@@ -351,7 +351,7 @@ function red(){
 document.addEventListener('DOMContentLoaded', async function(){
     const inputElement = document.getElementById('pesquisa');
     const formElement = document.getElementById('myForm');
-    const input = document.querySelector("#pesquisa")
+    const input = document.querySelector("#pesquisarp")
     let errou = false
     const tipo_consulta = document.querySelector('input[name="type-consulta"]:checked').value
 
@@ -501,7 +501,7 @@ function verificaSituacaoDoParcelamentoParcelamento(listaDeDicionarios){
 
 
 document.addEventListener('DOMContentLoaded', async function() {
-    const documentoInput = document.querySelector("#pesquisa");
+    const documentoInput = document.querySelector("#pesquisarp");
     const tipoConsultaRadios = document.querySelectorAll('input[name="type-consulta"]');
     formatarDocumento()
     documentoInput.addEventListener('input', formatarDocumento);
@@ -527,9 +527,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                 documento = documento.substring(0, 11) + '-' + documento.substring(11,13);
             }
             // Atualiza o placeholder
-            document.querySelector("#pesquisa").placeholder = "000.000.000-00";
+            document.querySelector("#pesquisarp").placeholder = "000.000.000-00";
         }else if (tipoConsulta === 'cnpj') {
-            document.querySelector("#pesquisa").placeholder = "000.000.00/0000-00"
+            document.querySelector("#pesquisarp").placeholder = "000.000.00/0000-00"
             // Formata o CNPJ conforme o padrão XX.000.000/0000-XX
             if (documento.length > 2 && documento.length < 5) {
                 documento = documento.substring(0, 2) + '.' + documento.substring(2);
