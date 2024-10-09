@@ -417,7 +417,18 @@ p.tipo-atividade {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgb(0 0 0 / 63%);
 }
+#etapa-29 {
+  background-image: url(https://villelaprime.github.io/PJ/logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin: 0;
+}
 
+#etapa-29 #centro{
+  display: flex;
+  justify-content: center;
+}
 
 #etapa-29 table{
   background-color: white;
@@ -593,6 +604,8 @@ p.tipo-atividade {
 
 #etapa-29 input[type=radio]{
   width: initial;
+  -webkit-appearance: inner-spin-button;
+  appearance: auto;
 }
 
 #etapa-29 div#typo-consulta {
@@ -616,6 +629,10 @@ p.tipo-atividade {
   justify-content: flex-start;
   padding-top: 2px;
   visibility: hidden;
+  align-items: center;
+}
+#aviso-de-erro p {
+  margin: 0;
 }
 
 
@@ -628,4 +645,12 @@ p.tipo-atividade {
 #etapa-29 #input-de-pesquisa {
   display: inline-flex;
   flex-direction: column;
+  width: 18vw;
+}
+
+
+#etapa-29 div#typo-consulta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
