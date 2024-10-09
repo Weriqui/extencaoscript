@@ -14,7 +14,7 @@ async function pesquisar() {
 
 async function consultar(cnpj) {
 
-    const response = await fetch(`/api/consultar/${cnpj}/`)
+    const response = await fetch(`https://villela-pro-6405962cedab.herokuapp.com/api/consultar/${cnpj}/`)
 
     const data = await response.json();
 
