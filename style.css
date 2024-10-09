@@ -425,6 +425,7 @@ p.tipo-atividade {
   height: 100%;
   margin: 0;
   font-family: 'Fira Sans Condensed', sans-serif;
+  overflow: hidden;
 }
 
 #etapa-29 #centro{
@@ -500,6 +501,8 @@ p.tipo-atividade {
   flex-direction: column;
   justify-content: top;
   align-items: center;
+  overflow: auto;
+  height: 80%;
 }
 
 
