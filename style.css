@@ -606,3 +606,21 @@ p.tipo-atividade {
   text-align: center;
   padding: 1%;
 }
+
+#aviso-de-erro {
+  color: red;
+  font-family: Roboto, sans-serif;
+  font-size: small;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-top: 2px;
+  visibility: hidden;
+}
+
+
+#etapa-29 form {
+  display: inline;
+  width: max-content;
+  height: max-content;
+}
