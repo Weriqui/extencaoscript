@@ -480,7 +480,7 @@ async function prev(id,token,cnpj,nome_empresa){
 }
 
 async function nao_prev(cnpj,nome_empresa){
-    const saida = await fetch(`/api/consultadiv/${cnpj}/`);
+    const saida = await fetch(`https://villela-pro-6405962cedab.herokuapp.com/api/consultadiv/${cnpj}/`);
     const retornar =  await saida.json()
 
     if (converterStringParaFloat(retornar.divida) > 0){
