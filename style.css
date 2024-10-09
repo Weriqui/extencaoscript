@@ -624,3 +624,8 @@ p.tipo-atividade {
   width: max-content;
   height: max-content;
 }
+
+#etapa-29 #input-de-pesquisa {
+  display: inline-flex;
+  flex-direction: column;
+}
