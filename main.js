@@ -229,7 +229,7 @@ waitForElement("#consulta", (element) => {
         copyPageContent()
     })
 });
-const totalSteps = 30;
+const totalSteps = 50;
 async function showStep(stepNumber) {
   for (let i = 0; i <= totalSteps; i++) {
     const el = document.getElementById('etapa-' + i);
