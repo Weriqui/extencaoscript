@@ -53,6 +53,8 @@ waitForElement("#consulta", (element) => {
             showStep(15)
           } else if(selectedValue == 'EXECUÇÃO'){
             showStep(21)
+          } else if(selectedValue == 'REPESCAGEM'){
+            showStep(25)
           }
         }
         SelectsDeEtapa.forEach(etapaSelect => {
