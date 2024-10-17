@@ -47,6 +47,15 @@ waitForElement("#consulta", (element) => {
           if (sectionToShow) {
             document.getElementById(sectionToShow).classList.add('visivel');
           }
+          
+          if (selectedValue == 'REPESCAGEM'){
+            busca_produto(true)
+          } else{
+            busca_produto()
+          }
+
+
+
           if (selectedValue == 'PROSPECÇÃO'){
             showStep(10)
           } else if (selectedValue == 'NEGOCIAÇÃO') {
@@ -890,7 +899,7 @@ async function busca_usuarios(){
   select.innerHTML =  option
 }
 
-async function busca_produto(){
+async function busca_produto(tipo_produto=false){
   let myHeaders = new Headers();
   const select = document.querySelectorAll('select.produto')
   myHeaders.append("Accept", "application/json");
@@ -901,7 +910,13 @@ async function busca_produto(){
   headers: myHeaders,
   redirect: 'follow'
   };
-  const response = await fetch("https://api.pipedrive.com/v1/products?filter_id=109&api_token=6c7d502747be67acc199b483803a28a0c9b95c09", requestOptions)
+  let filtro_especifico;
+  if(tipo_produto){
+    filtro_especifico=2055
+  } else {
+    filtro_especifico=109
+  }
+  const response = await fetch(`https://api.pipedrive.com/v1/products?filter_id=${filtro_especifico}&api_token=6c7d502747be67acc199b483803a28a0c9b95c09`, requestOptions)
   const result = await response.json()
   const data = await result.data
   let option = '<option value="">Selecione</option>\n '
@@ -911,7 +926,7 @@ async function busca_produto(){
       }
   }
   select.forEach(function(sele){
-	sele.innerHTML =  option
+  sele.innerHTML =  option
   })
   
 }
