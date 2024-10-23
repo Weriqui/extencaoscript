@@ -462,7 +462,7 @@ p.tipo-atividade {
 #etapa-29 tr:nth-child(even){background-color: rgba(211, 211, 211, 0.692);}
 
 #etapa-29 table {
-  width: 650px;
+  width: 95%;
   margin: auto;
 }
 
@@ -507,7 +507,7 @@ p.tipo-atividade {
 
 
 #etapa-29 .villela{
-  width: 15%;
+  width: 40%;
 }
 
 #etapa-29 #parcelamentos{
