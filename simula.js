@@ -270,7 +270,6 @@ function inserirTabelas(cnpj, data, ModalidadeDoParcelamento, nome_empresa, qnt_
             </tr>
         </tfoot>
     </table>
-    <img class="villela" src="https://villelabrasilbank.com.br/wp-content/uploads/2024/08/logotipo_grupo-villela2-1.png" alt="">
     `
     document.body.querySelector('#parcelamentos').innerHTML += html
 }
