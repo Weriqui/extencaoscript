@@ -233,7 +233,8 @@ function inserirTabelas(cnpj, data, ModalidadeDoParcelamento, nome_empresa, qnt_
     <table class="com-villela" cellspacing="0" cellpadding="5">
         <thead>
             <tr>
-                <th colspan="2">CONDIÇÕES APÓS ASSESSORIA DO GRUPO VILLELA</th>
+                <th style="width: 80%;">CONDIÇÕES APÓS ASSESSORIA DO GRUPO VILLELA</th>
+                <th><img class="villela" src="https://villelabrasilbank.com.br/wp-content/uploads/2024/08/logotipo_grupo-villela2-1.png" alt="" style="width: 100%;margin: auto;"></th>
             </tr>
         </thead>
         <tbody>
@@ -269,7 +270,7 @@ function inserirTabelas(cnpj, data, ModalidadeDoParcelamento, nome_empresa, qnt_
             </tr>
         </tfoot>
     </table>
-    <img class="villela" src="nova_logo_villela_cortada.png" alt="">
+    <img class="villela" src="https://villelabrasilbank.com.br/wp-content/uploads/2024/08/logotipo_grupo-villela2-1.png" alt="">
     `
     document.body.querySelector('#parcelamentos').innerHTML += html
 }
