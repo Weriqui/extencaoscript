@@ -233,7 +233,7 @@ function inserirTabelas(cnpj, data, ModalidadeDoParcelamento, nome_empresa, qnt_
     <table class="com-villela" cellspacing="0" cellpadding="5">
         <thead>
             <tr>
-                <th colspan="2">CONDIÇÕES APÓS ASSESSORIA DA VILLELA BRASIL BANK</th>
+                <th colspan="2">CONDIÇÕES APÓS ASSESSORIA DO GRUPO VILLELA</th>
             </tr>
         </thead>
         <tbody>
@@ -269,7 +269,7 @@ function inserirTabelas(cnpj, data, ModalidadeDoParcelamento, nome_empresa, qnt_
             </tr>
         </tfoot>
     </table>
-    <img class="villela" src="https://villelaprime.github.io/PJ/fundo.png" alt="">
+    <img class="villela" src="nova_logo_villela_cortada.png" alt="">
     `
     document.body.querySelector('#parcelamentos').innerHTML += html
 }
@@ -424,7 +424,7 @@ function inserirTabelasdiv(cnpj, nome_empresa, valor_consolidado, qnt_parcelas_r
     <table class="com-villela" cellspacing="0" cellpadding="5">
         <thead>
             <tr>
-                <th colspan="2">CONDIÇÕES APÓS ASSESSORIA DA VILLELA BRASIL BANK</th>
+                <th colspan="2">CONDIÇÕES APÓS ASSESSORIA DO GRUPO VILLELA</th>
             </tr>
         </thead>
         <tbody>
