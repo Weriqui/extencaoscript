@@ -744,23 +744,23 @@
         </div>
     </div>
     </div>
+    <script>
+    function baixarPDF() {
+      fetch('https://weriqui.github.io/extencaoscript/GRUPO%20VILLELA%20-%20INSTITUCIONAL.pdf')
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'GRUPO VILLELA - INSTITUCIONAL.pdf';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+        });
+    }
+    </script>
 </body>
-<script>
-function baixarPDF() {
-  fetch('https://weriqui.github.io/extencaoscript/GRUPO%20VILLELA%20-%20INSTITUCIONAL.pdf')
-    .then(response => response.blob())
-    .then(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'GRUPO VILLELA - INSTITUCIONAL.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    });
-}
-</script>
 </html>
 
 
