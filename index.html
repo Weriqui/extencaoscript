@@ -335,7 +335,7 @@
                     </ul>
                     <p id="C1" class="red" title="Clique para copiar">
                     </p>
-                    <a href="https://weriqui.github.io/extencaoscript/GRUPO VILLELA - INSTITUCIONAL.pdf" download="GRUPO VILLELA - INSTITUCIONAL.pdf">BAIXAR MATERIAL INFORMATIVO (ATIVIDADE C1)</a>
+                    <a href="#" onclick="baixarPDF()">BAIXAR MATERIAL INFORMATIVO (ATIVIDADE C1)</a>
                         
                 </div>
 
@@ -449,7 +449,7 @@
                 </p>
                 <p id="SCRIPT-LIGACAO2" class="red" title="Clique para copiar">
                 </p>
-                <a href="https://weriqui.github.io/extencaoscript/GRUPO VILLELA - INSTITUCIONAL.pdf" download="GRUPO VILLELA - INSTITUCIONAL.pdf">BAIXAR MATERIAL INSTITUCIONAL</a>
+                <a href="#" onclick="baixarPDF()">BAIXAR MATERIAL INSTITUCIONAL</a>
             </section>
             <section id="etapa-12" class="step-content hidden gray">
                 <div class="input-parcelamento">
@@ -745,6 +745,22 @@
     </div>
     </div>
 </body>
+<script>
+function baixarPDF() {
+  fetch('https://weriqui.github.io/extencaoscript/GRUPO%20VILLELA%20-%20INSTITUCIONAL.pdf')
+    .then(response => response.blob())
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'GRUPO VILLELA - INSTITUCIONAL.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    });
+}
+</script>
 </html>
 
 
