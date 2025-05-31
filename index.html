@@ -3,6 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk/dist/umd/index.min.js"></script>
+  <script>
+    (async () => {
+      // 2) Pegue os parâmetros da URL do iframe
+      const query = new URLSearchParams(window.location.search);
+      const identifier = query.get("id");       // token runtime
+      const userId = query.get("userId");
+      const companyId = query.get("companyId");
+      const jwtToken = query.get("token");
+      // ... etc.
+
+      if (!identifier) {
+        console.error("SDK não inicializou porque faltou `id` na URL");
+        return;
+      }
+
+      // 3) Crie e inicialize o SDK dentro do iframe
+      const sdk = new window.AppExtensionsSDK({ identifier });
+      try {
+        // Lembre-se: o Pipedrive exige que isso ocorra dentro de ~10 segundos
+        await sdk.initialize({ size: { width: 800, height: 600 } });
+
+        // 4) Opcionalmente, redimensione de novo se seu layout mudar
+        await sdk.execute(sdk.Command.RESIZE, { width: 800, height: 600 });
+
+        // 5) A partir desse ponto, você pode usar o SDK para SHOW_SNACKBAR, CLOSE_MODAL etc.
+        //    E também aproveitar `userId`, `companyId`, `jwtToken` (token) para buscar dados no seu backend.
+        console.log("SDK inicializado com sucesso:", { userId, companyId, jwtToken });
+
+        // 6) Monte seu conteúdo React ou Vanilla aqui em #root...
+        //    Por exemplo, se for React, você chamaria ReactDOM.render(App, document.getElementById("root"))
+      } catch (err) {
+        console.error("Falha ao inicializar SDK:", err);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script> 
   <script src="simula.js" defer></script>  
